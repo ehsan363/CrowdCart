@@ -1,0 +1,71 @@
+body {
+    background-color: #121212;
+}
+/* Navbar container */
+.navbar {
+    float: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #01233D;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+/* Logo linking to home page */
+#logo_link {
+    text-decoration: none;
+    color: white;
+    }
+
+/* Navbar extension to the right */
+.nav_img {
+    margin-left: 688px;
+}
+
+#links_to_pages {
+    display: flex;
+}
+
+/* Logo on navbar*/
+.logo {
+    display: flex;
+   }
+
+
+#cart_img {
+   margin-left: 420px;
+   }
+
+/* Logo title */
+#logo_title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+/*  nav bar link row */
+.nav_links {
+    padding-left: 160px;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+/* Nav abr links <a> */
+.nav_links a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+/* Hover effect on navbar*/
+.nav_links a:hover {
+    background-color: #234c6b;
+    border-radius: 5px;
+}
