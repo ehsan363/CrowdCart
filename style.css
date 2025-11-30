@@ -1,13 +1,15 @@
+/* Background color */
 body {
     background-color: #121212;
 }
+
 /* Navbar container */
 .navbar {
     float: left;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
+    padding: 5px 40px;
     background-color: #01233D;
     color: white;
     position: sticky;
@@ -22,9 +24,10 @@ body {
 
 /* Navbar extension to the right */
 .nav_img {
-    margin-left: 688px;
+    padding-left: 688px;
 }
 
+/* To make links in row */
 #links_to_pages {
     display: flex;
 }
@@ -68,4 +71,33 @@ body {
 .nav_links a:hover {
     background-color: #234c6b;
     border-radius: 5px;
+}
+
+.page_link {
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.nav_right {
+    margin-left: 725px;   /* pushes icons to the right */
+    margin-right: 15px;
+    display: flex;
+    gap: 30px;
+
+}
+
+.nav_links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-left: 160px;
+}
+
+.nav_icon {
+    display: block;
+}
+
+.nav_right a {
+    padding-top: 5px;
 }
