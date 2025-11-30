@@ -22,11 +22,6 @@ body {
     color: white;
     }
 
-/* Navbar extension to the right */
-.nav_img {
-    padding-left: 688px;
-}
-
 /* To make links in row */
 #links_to_pages {
     display: flex;
@@ -76,13 +71,6 @@ body {
 .page_link {
     margin-top: 5px;
     display: inline-block;
-}
-
-.nav_right {
-    margin-left: 725px;   /* pushes icons to the right */
-    margin-right: 15px;
-    display: flex;
-    gap: 30px;
 
 }
 
@@ -94,10 +82,19 @@ body {
     padding-left: 160px;
 }
 
+.nav_right {
+    margin-left: 675px;   /* pushes icons to the right */
+    margin-right: 10px;
+    padding-top: 2px;
+    display: flex;
+    gap: 20px;
+}
+
 .nav_icon {
     display: block;
 }
 
+
 .nav_right a {
-    padding-top: 5px;
+    padding-top: 20px;
 }
