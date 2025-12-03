@@ -1,6 +1,6 @@
 /* Background color */
 body {
-    background-color: #121212;
+    background-color: #1c1b1b;
 }
 
 /* Navbar container */
@@ -32,7 +32,7 @@ body {
     display: flex;
    }
 
-
+/* Cart image on navbar */
 #cart_img {
    margin-left: 420px;
    }
@@ -68,20 +68,15 @@ body {
     border-radius: 5px;
 }
 
-.page_link {
-    margin-top: 5px;
-    display: inline-block;
-
-}
-
+/* Navbar links */
 .nav_links {
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 20px;
     padding-left: 160px;
 }
 
+/* Last 3 icons in the navbar */
 .nav_right {
     margin-left: 665px;   /* pushes icons to the right */
     margin-right: 10px;
@@ -90,15 +85,7 @@ body {
     gap: 20px;
 }
 
-.nav_icon {
-    display: block;
-}
-
-
-.nav_right a {
-    padding-top: 20px;
-}
-
+/* Display products in row till space ends */
 #product-list, #phone-list, #shirt-list, #laptop-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -106,6 +93,7 @@ body {
     padding: 25px;
 }
 
+/* Product display */
 .product {
     border: 1px solid #ccc;
     padding: 15px;
@@ -117,9 +105,37 @@ body {
 }
 
 .product-link{
-    text-decoration:none;
+    text-decoration:none; /* Link underlines removed */
     }
 
+/* Navbar length for homepage and category1 */
 #home_s-nav, #cat1_s-nav {
     margin-left: 660px;
+}
+
+/* Bar with number of results and sort button */
+#data-bar {
+    color: White;
+    font-size: 20px;
+    padding-top:70px;
+}
+
+#data-bar1 {
+    display: flex;  /* Make the "results" and sort button in line */
+}
+
+#sort-feature {
+    margin-left: 80%;  /* To move sort button to the right */
+}
+
+/* Sort button */
+#sort-feature {
+  padding: 0px 8px;
+  font-size: 14px;
+  background-color: #1f1f1f;
+  color: white;
+  border: 3px solid #5AC6CA;
+  border-radius: 20px;
+  outline: none;
+  width: 140px;
 }

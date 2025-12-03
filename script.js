@@ -19,6 +19,8 @@ if (document.getElementById("product-list")) {
                 </a>
             `;
         });
+        const productCount = document.querySelectorAll('.product').length;
+        document.getElementById('results').innerHTML = productCount+" Results";
     });
 
 }
