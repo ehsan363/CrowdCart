@@ -1,3 +1,4 @@
+// homepage products details fetching from API
 // Check if we are on home.html (product list page)
 if (document.getElementById("product-list")) {
 
@@ -25,6 +26,7 @@ if (document.getElementById("product-list")) {
 
 }
 
+// Smartphones categories details fetching from API
 if (document.getElementById("phone-list")) {
 
     // Explanation:
@@ -45,6 +47,8 @@ if (document.getElementById("phone-list")) {
                 </a>
             `;
         });
+        const productCount = document.querySelectorAll('.product').length;
+        document.getElementById('results').innerHTML = productCount+" Results";
     });
 
 }
@@ -69,6 +73,8 @@ if (document.getElementById("shirt-list")) {
                 </a>
             `;
         });
+        const productCount = document.querySelectorAll('.product').length;
+        document.getElementById('results').innerHTML = productCount+" Results";
     });
 
 }
@@ -93,6 +99,8 @@ if (document.getElementById("laptop-list")) {
                 </a>
             `;
         });
+        const productCount = document.querySelectorAll('.product').length;
+        document.getElementById('results').innerHTML = productCount+" Results";
     });
 
 }
