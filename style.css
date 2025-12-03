@@ -83,7 +83,7 @@ body {
 }
 
 .nav_right {
-    margin-left: 675px;   /* pushes icons to the right */
+    margin-left: 665px;   /* pushes icons to the right */
     margin-right: 10px;
     padding-top: 2px;
     display: flex;
@@ -97,4 +97,29 @@ body {
 
 .nav_right a {
     padding-top: 20px;
+}
+
+#product-list, #phone-list, #shirt-list, #laptop-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 25px;
+}
+
+.product {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    background: green;
+    background-color: #262626;
+    color: white;
+}
+
+.product-link{
+    text-decoration:none;
+    }
+
+#home_s-nav, #cat1_s-nav {
+    margin-left: 660px;
 }
