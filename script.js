@@ -2,107 +2,323 @@
 // Check if we are on home.html (product list page)
 if (document.getElementById("product-list")) {
 
-    // Explanation:
-    //fetching data from link below
-    fetch("https://dummyjson.com/products?limit=200")
-    .then(res => res.json()) //fetched data into 'res'
-    .then(data => { //each part into 'data'
-        const container = document.getElementById("product-list");
+    const sortSelect = document.getElementById("sort-feature");
+    const productList = document.getElementById("product-list");
+    let products = [];     // This will store the fetched products
 
-        data.products.forEach(product => {
-            container.innerHTML += `
-                <a href="product.html?id=${product.id}" class = 'product-link'>
-                    <div class="product">
-                        <img src="${product.thumbnail}" width="150" loading = 'lazy'>
-                        <h3>${product.title}</h3>
-                        <p>AED ${product.price}</p>
-                    </div>
-                </a>
-            `;
-        });
+    // Fetch products
+    fetch("https://dummyjson.com/products?limit=200")
+      .then(res => res.json())
+      .then(data => {
+        products = data.products;
+        displayProducts(products);
+      });
+
+    // Re-render products into the page
+    function displayProducts(list) {
+      productList.innerHTML = "";
+
+      list.forEach(product => {
+        productList.innerHTML += `
+            <a href="product.html?id=${product.id}" class = 'product-link'>
+                <div class="product">
+                    <img src="${product.thumbnail}" width="150" loading = 'lazy'>
+                    <h3>${product.title}</h3>
+                    <p id = "product_rating">Rating: ${product.rating}&#127775;</p>
+                    <p id = "product_price">AED ${product.price}</p>
+                </div>
+            </a>
+        `;
+
+        // Results number display
         const productCount = document.querySelectorAll('.product').length;
         document.getElementById('results').innerHTML = productCount+" Results";
-    });
+      });
+    }
 
+    // Handle sorting
+    sortSelect.addEventListener("change", () => {
+      const value = sortSelect.value;
+
+      if (value === "AZ") {
+        products.sort((a, b) => a.title.localeCompare(b.title)); // Asc Order
+      }
+      else if (value === "ZA") {
+        products.sort((a, b) => b.title.localeCompare(a.title)); // Desc order
+      }
+      else if (value === "L-H") {
+        products.sort((a, b) => a.price - b.price); // Price low to high
+      }
+      else if (value === "H-L") {
+        products.sort((a, b) => b.price - a.price); // Price high to low
+      }
+      else if (value === "Rating") {
+        products.sort((a, b) => b.rating - a.rating); // Customer rating order
+      }
+      else {
+        products.sort((a, b) => a.id - b.id);   // Default order
+      }
+
+      displayProducts(products); // Redisplay
+
+    });
 }
 
 // Smartphones categories details fetching from API
 if (document.getElementById("phone-list")) {
 
-    // Explanation:
-    //fetching data from link below
-    fetch("https://dummyjson.com/products/category/smartphones")
-    .then(res => res.json()) //fetched data into 'res'
-    .then(data => { //each part into 'data'
-        const container = document.getElementById("phone-list");
+    const sortSelect = document.getElementById("sort-feature");
+    const productList = document.getElementById("phone-list");
+    let products = [];     // This will store the fetched products
 
-        data.products.forEach(product => {
-            container.innerHTML += `
-                <a href="product.html?id=${product.id}" class = 'product-link'>
-                    <div class="product">
-                        <img src="${product.thumbnail}" width="150" loading = 'lazy'>
-                        <h3>${product.title}</h3>
-                        <p>AED ${product.price}</p>
-                    </div>
-                </a>
-            `;
-        });
+    // Fetch products
+    fetch("https://dummyjson.com/products/category/smartphones")
+      .then(res => res.json())
+      .then(data => {
+        products = data.products;
+        displayProducts(products);
+      });
+
+    // Re-render products into the page
+    function displayProducts(list) {
+      productList.innerHTML = "";
+
+      list.forEach(product => {
+        productList.innerHTML += `
+            <a href="product.html?id=${product.id}" class = 'product-link'>
+                <div class="product">
+                    <img src="${product.thumbnail}" width="150" loading = 'lazy'>
+                    <h3>${product.title}</h3>
+                    <p id = "product_rating">Rating: ${product.rating}&#127775;</p>
+                    <p id = "product_price">AED ${product.price}</p>
+                </div>
+            </a>
+        `;
+
+        // Results number display
         const productCount = document.querySelectorAll('.product').length;
         document.getElementById('results').innerHTML = productCount+" Results";
-    });
+      });
+    }
 
+    // Handle sorting
+    sortSelect.addEventListener("change", () => {
+      const value = sortSelect.value;
+
+      if (value === "AZ") {
+        products.sort((a, b) => a.title.localeCompare(b.title)); // Asc Order
+      }
+      else if (value === "ZA") {
+        products.sort((a, b) => b.title.localeCompare(a.title)); // Desc order
+      }
+      else if (value === "L-H") {
+        products.sort((a, b) => a.price - b.price); // Price low to high
+      }
+      else if (value === "H-L") {
+        products.sort((a, b) => b.price - a.price); // Price high to low
+      }
+      else if (value === "Rating") {
+        products.sort((a, b) => b.rating - a.rating); // Customer rating order
+      }
+      else {
+        products.sort((a, b) => a.id - b.id);   // Default order
+      }
+
+      displayProducts(products); // Redisplay
+
+    });
 }
 
 if (document.getElementById("shirt-list")) {
 
-    // Explanation:
-    //fetching data from link below
-    fetch("https://dummyjson.com/products/category/mens-shirts")
-    .then(res => res.json()) //fetched data into 'res'
-    .then(data => { //each part into 'data'
-        const container = document.getElementById("shirt-list");
+    const sortSelect = document.getElementById("sort-feature");
+    const productList = document.getElementById("shirt-list");
+    let products = [];     // This will store the fetched products
 
-        data.products.forEach(product => {
-            container.innerHTML += `
-                <a href="product.html?id=${product.id}" class = 'product-link'>
-                    <div class="product">
-                        <img src="${product.thumbnail}" width="150" loading = 'lazy'>
-                        <h3>${product.title}</h3>
-                        <p>AED ${product.price}</p>
-                    </div>
-                </a>
-            `;
-        });
+    // Fetch products
+    fetch("https://dummyjson.com/products/category/mens-shirts")
+      .then(res => res.json())
+      .then(data => {
+        products = data.products;
+        displayProducts(products);
+      });
+
+    // Re-render products into the page
+    function displayProducts(list) {
+      productList.innerHTML = "";
+
+      list.forEach(product => {
+        productList.innerHTML += `
+            <a href="product.html?id=${product.id}" class = 'product-link'>
+                <div class="product">
+                    <img src="${product.thumbnail}" width="150" loading = 'lazy'>
+                    <h3>${product.title}</h3>
+                    <p id = "product_rating">Rating: ${product.rating}&#127775;</p>
+                    <p id = "product_price">AED ${product.price}</p>
+                </div>
+            </a>
+        `;
+
+        // Results number display
         const productCount = document.querySelectorAll('.product').length;
         document.getElementById('results').innerHTML = productCount+" Results";
-    });
+      });
+    }
 
+    // Handle sorting
+    sortSelect.addEventListener("change", () => {
+      const value = sortSelect.value;
+
+      if (value === "AZ") {
+        products.sort((a, b) => a.title.localeCompare(b.title)); // Asc Order
+      }
+      else if (value === "ZA") {
+        products.sort((a, b) => b.title.localeCompare(a.title)); // Desc order
+      }
+      else if (value === "L-H") {
+        products.sort((a, b) => a.price - b.price); // Price low to high
+      }
+      else if (value === "H-L") {
+        products.sort((a, b) => b.price - a.price); // Price high to low
+      }
+      else if (value === "Rating") {
+        products.sort((a, b) => b.rating - a.rating); // Customer rating order
+      }
+      else {
+        products.sort((a, b) => a.id - b.id);   // Default order
+      }
+
+      displayProducts(products); // Redisplay
+
+    });
 }
 
 if (document.getElementById("laptop-list")) {
 
-    // Explanation:
-    //fetching data from link below
-    fetch("https://dummyjson.com/products/category/laptops")
-    .then(res => res.json()) //fetched data into 'res'
-    .then(data => { //each part into 'data'
-        const container = document.getElementById("laptop-list");
+    const sortSelect = document.getElementById("sort-feature");
+    const productList = document.getElementById("laptop-list");
+    let products = [];     // This will store the fetched products
 
-        data.products.forEach(product => {
-            container.innerHTML += `
-                <a href="product.html?id=${product.id}" class = 'product-link'>
-                    <div class="product">
-                        <img src="${product.thumbnail}" width="150" loading = 'lazy'>
-                        <h3>${product.title}</h3>
-                        <p>AED ${product.price}</p>
-                    </div>
-                </a>
-            `;
-        });
+    // Fetch products
+    fetch("https://dummyjson.com/products/category/laptops")
+      .then(res => res.json())
+      .then(data => {
+        products = data.products;
+        displayProducts(products);
+      });
+
+    // Re-render products into the page
+    function displayProducts(list) {
+      productList.innerHTML = "";
+
+      list.forEach(product => {
+        productList.innerHTML += `
+            <a href="product.html?id=${product.id}" class = 'product-link'>
+                <div class="product">
+                    <img src="${product.thumbnail}" width="150" loading = 'lazy'>
+                    <h3>${product.title}</h3>
+                    <p id = "product_rating">Rating: ${product.rating}&#127775;</p>
+                    <p id = "product_price">AED ${product.price}</p>
+                </div>
+            </a>
+        `;
+
+        // Results number display
         const productCount = document.querySelectorAll('.product').length;
         document.getElementById('results').innerHTML = productCount+" Results";
-    });
+      });
+    }
 
+    // Handle sorting
+    sortSelect.addEventListener("change", () => {
+      const value = sortSelect.value;
+
+      if (value === "AZ") {
+        products.sort((a, b) => a.title.localeCompare(b.title)); // Asc Order
+      }
+      else if (value === "ZA") {
+        products.sort((a, b) => b.title.localeCompare(a.title)); // Desc order
+      }
+      else if (value === "L-H") {
+        products.sort((a, b) => a.price - b.price); // Price low to high
+      }
+      else if (value === "H-L") {
+        products.sort((a, b) => b.price - a.price); // Price high to low
+      }
+      else if (value === "Rating") {
+        products.sort((a, b) => b.rating - a.rating); // Customer rating order
+      }
+      else {
+        products.sort((a, b) => a.id - b.id);   // Default order
+      }
+
+      displayProducts(products); // Redisplay
+
+    });
+}
+
+if (document.getElementById("fav-list")) {
+
+    const sortSelect = document.getElementById("sort-feature");
+    const productList = document.getElementById("fav-list");
+    let products = [];     // This will store the fetched products
+
+    // Fetch products
+    /* fetch("https://dummyjson.com/products/category/laptops")
+      .then(res => res.json())
+      .then(data => {
+        products = data.products;
+        displayProducts(products);
+      });
+
+    // Re-render products into the page
+    function displayProducts(list) {
+      productList.innerHTML = "";
+
+      list.forEach(product => {
+        productList.innerHTML += `
+            <a href="product.html?id=${product.id}" class = 'product-link'>
+                <div class="product">
+                    <img src="${product.thumbnail}" width="150" loading = 'lazy'>
+                    <h3>${product.title}</h3>
+                    <p id = "product_rating">Rating: ${product.rating}&#127775;</p>
+                    <p id = "product_price">AED ${product.price}</p>
+                </div>
+            </a>
+        `;
+
+        // Results number display
+        const productCount = document.querySelectorAll('.product').length;
+        document.getElementById('results').innerHTML = productCount+" Results";
+      });
+    } */
+
+    // Handle sorting
+    sortSelect.addEventListener("change", () => {
+      const value = sortSelect.value;
+
+      if (value === "AZ") {
+        products.sort((a, b) => a.title.localeCompare(b.title)); // Asc Order
+      }
+      else if (value === "ZA") {
+        products.sort((a, b) => b.title.localeCompare(a.title)); // Desc order
+      }
+      else if (value === "L-H") {
+        products.sort((a, b) => a.price - b.price); // Price low to high
+      }
+      else if (value === "H-L") {
+        products.sort((a, b) => b.price - a.price); // Price high to low
+      }
+      else if (value === "Rating") {
+        products.sort((a, b) => b.rating - a.rating); // Customer rating order
+      }
+      else {
+        products.sort((a, b) => a.id - b.id);   // Default order
+      }
+
+      displayProducts(products); // Redisplay
+
+    });
 }
 
 // Check if we are on product.html (single product page)
