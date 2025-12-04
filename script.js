@@ -321,21 +321,55 @@ if (document.getElementById("fav-list")) {
     });
 }
 
-// Check if we are on product.html (single product page)
+// Check if we are on product.html, product detail page
 if (document.getElementById("product")) {
 
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
+    const params = new URLSearchParams(window.location.search); // URL parameters into params
+    const id = params.get("id"); // Taking "id" from the URL through params
 
     fetch(`https://dummyjson.com/products/${id}`)
         .then(res => res.json())
         .then(product => {
             document.getElementById("product").innerHTML = `
-                <h1>${product.title}</h1>
-                <img src="${product.thumbnail}" width="300">
-                <p><strong>Price:</strong> $${product.price}</p>
-                <p><strong>Description:</strong> ${product.description}</p>
-                <p><strong>Rating:</strong> ${product.rating}</p>
+                <div id = 'product_details_display'>
+                    <h1 id='product-title_detail'>${product.title}</h1>
+                    <div id = "detail_row">
+                        <img id='product-image_detail' src="${product.thumbnail}" width="300">
+                        <div id = 'rating_price_detail'>
+                            <p><strong>Rating: </strong> ${product.rating} &#127775;</p>
+                            <p id='discount_percentage'></p>
+                            <p><strong>Price:</strong> AED ${product.price}</p>
+                        </div>
+                    </div>
+                    <p id='description_detail'><strong>Description:</strong> ${product.description}</p>
+                    <hr>
+                    <p id = 'dimension_details_head'><strong>Dimensions:</strong></p>
+                    <p class = 'dimension_details'><strong>Height:</strong> ${product.dimensions.height}cm</p>
+                    <p class = 'dimension_details'><strong>Width:</strong> ${product.dimensions.width}cm</p>
+                    <p class = 'dimension_details'><strong>Depth: </strong> ${product.dimensions.depth}cm</p>
+
+                    <p id = 'shipping_detail'><strong>Shipping Duration:</strong> ${product.shippingInformation}</p>
+                    <p id = 'warranty_detail'><strong>Warranty:</strong> ${product.warrantyInformation}</p>
+
+                    <div id='reviews'>
+                        <h2 id =
+                        'review_heading'>Review</h2>
+                        <ul class='review'>
+                                <li><p class = 'reviewer_name'>${product.reviews[0].reviewerName}</p></li>
+                                <li><p class = 'comment'>${product.reviews[0].comment}</p></li>
+                        </ul>
+
+                        <ul class='review'>
+                                <li><p class = 'reviewer_name'>${product.reviews[1].reviewerName}</p></li>
+                                <li><p class = 'comment'>${product.reviews[1].comment}</p></li>
+                        </ul>
+
+                        <ul class='review'>
+                                <li><p class = 'reviewer_name'>${product.reviews[2].reviewerName}</p></li>
+                                <li><p class = 'comment'>${product.reviews[2].comment}</p></li>
+                        </ul>
+                    </div>
+                </div>
             `;
         })
         .catch(err => {
