@@ -335,7 +335,7 @@ if (document.getElementById("product")) {
                     <h1 id='product-title_detail'>${product.title}</h1>
                     <div id = "detail_row">
                         <img id='product-image_detail' src="${product.thumbnail}" width="300">
-                        <div id = 'rating_price_detail'>
+                        <div id = 'rating_price_buttons_detail'>
                             <p><strong>Rating: </strong> ${product.rating} &#127775;</p>
                             <p id='discount_percentage'></p>
                             <p><strong>Price:</strong> AED ${product.price}</p>
