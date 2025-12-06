@@ -20,6 +20,11 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+
+window.logoutUser = logoutUser;
+window.loginWithGoogle = loginWithGoogle;
+
+
 export function loginWithGoogle(){
   signInWithPopup(auth, provider)
       .catch(err => console.error(err));
@@ -53,7 +58,4 @@ document.getElementById('googleLoginBtn').addEventListener('click', () => {
       console.error(error);
       document.getElementById('failedLoginText').style.display = "block";
     });
-});
-
-window.logoutUser = logoutUser;
-window.loginWithGoogle = loginWithGoogle;
+;
