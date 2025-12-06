@@ -32,11 +32,6 @@ body {
     display: flex;
    }
 
-/* Cart image on navbar */
-#cart_img {
-   margin-left: 420px;
-   }
-
 /* Logo title */
 #logo_title {
     font-size: 28px;
@@ -76,9 +71,12 @@ body {
     padding-left: 160px;
 }
 
+#sp_navLink1, #sp_navLink2 , #sp_navLink3, #sp_navLink4{
+    padding-left: 10px;
+}
+
 /* Last 3 icons in the navbar */
 .nav_right {
-    margin-left: 665px;   /* pushes icons to the right */
     margin-right: 10px;
     padding-top: 2px;
     display: flex;
@@ -262,4 +260,28 @@ body {
     font-size: 22px;
     margin-left: 47%;
     margin-top: 100px;
+}
+
+#userName {
+    color: #5AC6CA;
+    margin-left: 42%;
+    font-size: 30px;
+}
+
+#userEmail {
+    margin-left: 40%;
+    color: #5AC6CA;
+    font-size: 23px;
+}
+
+#logoutBtn {
+    color: White;
+    background-color: red;
+    border-radius:5px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 3px solid white;
+    margin-left: 46%;
 }
