@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider,signOut} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -15,22 +15,45 @@ const firebaseConfig = {
 };
 
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-  // Listen for button click
-  document.getElementById('googleLoginBtn').addEventListener('click', () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        alert(`Welcome ${user.displayName}!`);
-        // TODO: Redirect or update UI
-      })
-      .catch((error) => {
-        console.error(error);
-        document.getElementById('failedLoginText').style.display = "block";
-      });
-  });
+export function loginWithGoogle(){
+  signInWithPopup(auth, provider)
+      .catch(err => console.error(err));
+}
 
+function logoutUser() {
+  signOut(auth);
+}
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // Logged in
+    document.getElementById("loggedOutView").style.display = "none";
+    document.getElementById("loggedInView").style.display = "block";
+
+    document.getElementById("userName").textContent = user.displayName;
+    document.getElementById("userEmail").textContent = user.email;
+  } else {
+    // Logged out
+    document.getElementById("loggedOutView").style.display = "block";
+    document.getElementById("loggedInView").style.display = "none";
+  }
+});
+
+// Listen for button click
+document.getElementById('googleLoginBtn').addEventListener('click', () => {
+  signInWithPopup(auth, provider)
+    })
+
+    .catch((error) => {
+      console.error(error);
+      document.getElementById('failedLoginText').style.display = "block";
+    });
+});
+
+window.logoutUser = logoutUser;
+window.loginWithGoogle = loginWithGoogle;
