@@ -339,6 +339,8 @@ if (document.getElementById("product")) {
                             <p><strong>Rating: </strong> ${product.rating} &#127775;</p>
                             <p id='discount_percentage'></p>
                             <p><strong>Price:</strong> AED ${product.price}</p>
+                            <button id = "fav_button" type = "button"><img src="icons/heart_off.png" height = '40px'></button><br>
+                            <button id = "cart_button" type = "button"><img src="icons/cart.png" height = '40px'></button>
                         </div>
                     </div>
                     <p id='description_detail'><strong>Description:</strong> ${product.description}</p>
