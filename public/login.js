@@ -1,6 +1,10 @@
+// Login through Google
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
 import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider,signOut} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -18,8 +22,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
+export {auth, db};
 
 window.logoutUser = logoutUser;
 window.loginWithGoogle = loginWithGoogle;

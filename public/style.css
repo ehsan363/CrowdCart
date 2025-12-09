@@ -142,24 +142,6 @@ body {
     padding-top: 20px;
 }
 
-
-/*
-.fav-button {
-    color: white;
-    background: none;
-    border: 2px solid #5AC6CA;
-    border-radius: 6px;
-    padding: 2px 6px;
-}
-
-#product_rating{
-    font-size: 17px;
-}
-
-#product_price{
-    font-size: 18px;
-} */
-
 #product_details_display {
     color: White;
 }
@@ -300,4 +282,8 @@ body {
     margin-top: 10px;
     padding: 8px 10px 5px 10px;
 
+}
+
+#fav_button:hover {
+    background-color:
 }

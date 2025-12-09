@@ -1,3 +1,7 @@
+import {getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+// import { auth, db } from "./login.js";
+
+
 // homepage products details fetching from API
 // Check if we are on home.html (product list page)
 if (document.getElementById("product-list")) {
@@ -373,10 +377,35 @@ if (document.getElementById("product")) {
                     </div>
                 </div>
             `;
+            const cartBtn = document.getElementById("cart_button");
+
+            cartBtn.addEventListener("click", () => {
+            `  addToCart(product);
+            `});
         })
         .catch(err => {
             document.getElementById("product").innerHTML =
                 "<p>Error loading product.</p>";
             console.error(err);
         });
+}
+
+export async function addToCart(product) {
+  const user = auth.currentUser;
+  if (!user) {
+    alert("Please login first");
+    return;
+  }
+
+  const uid = user.uid;
+
+  await setDoc(doc(db, "users", uid, "cart", product.id.toString()), {
+    id: product.id,
+    title: product.title,
+    price: product.price,
+    image: product.image,
+    quantity: 1
+  }, { merge: true });
+
+  console.log("Added to cart");
 }
