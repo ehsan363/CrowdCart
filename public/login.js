@@ -21,11 +21,10 @@ const firebaseConfig = {
   // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const auth = getAuth(app);
-const db = getFirestore(app);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-export {auth, db};
 
 window.logoutUser = logoutUser;
 window.loginWithGoogle = loginWithGoogle;
@@ -37,31 +36,61 @@ export function loginWithGoogle(){
 }
 
 function logoutUser() {
-  signOut(auth);
+  signOut(auth)
+    .then(() => {
+      console.log("User logged out");
+      // ✅ DO NOT manually change UI here
+      // onAuthStateChanged will do it automatically
+    })
+    .catch(err => console.error("Logout error:", err));
 }
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // Logged in
-    document.getElementById("loggedOutView").style.display = "none";
-    document.getElementById("loggedInView").style.display = "block";
 
-    document.getElementById("userName").textContent = user.displayName;
-    document.getElementById("userEmail").textContent = user.email;
+
+
+onAuthStateChanged(auth, (user) => {
+  const loggedOutView = document.getElementById("loggedOutView");
+  const loggedInView = document.getElementById("loggedInView");
+
+  if (!loggedOutView || !loggedInView) return;
+
+  if (user) {
+    // USER IS LOGGED IN
+    loggedOutView.style.display = "none";
+    loggedInView.style.display = "block";
+
+    document.getElementById("userName").textContent = user.displayName || "User";
+    document.getElementById("userEmail").textContent = user.email || "";
   } else {
-    // Logged out
-    document.getElementById("loggedOutView").style.display = "block";
-    document.getElementById("loggedInView").style.display = "none";
+    // USER IS LOGGED OUT
+    loggedInView.style.display = "none";
+    loggedOutView.style.display = "block";
   }
 });
 
+
 // Listen for button click
-document.getElementById('googleLoginBtn').addEventListener('click', () => {
-  signInWithPopup(auth, provider)
-    })
+document.addEventListener("DOMContentLoaded", () => {
+  const loginBtn = document.getElementById("googleLoginBtn");
+
+  if (!loginBtn) return;
+
+  loginBtn.addEventListener("click", () => {
+    signInWithPopup(auth, provider)
+
 
     .catch((error) => {
-      console.error(error);
-      document.getElementById('failedLoginText').style.display = "block";
+      // Ignore popup cancel errors (normal behavior)
+      if (error.code === "auth/cancelled-popup-request") {
+        console.warn("Popup was cancelled automatically.");
+        return;
+      }
+
+      console.error("Login error:", error);
+
+      const failText = document.getElementById("failedLoginText");
+      if (failText) failText.style.display = "block";
     });
-;
+
+      });
+  });

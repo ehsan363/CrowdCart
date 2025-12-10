@@ -1,5 +1,6 @@
 import {getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
-// import { auth, db } from "./login.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+import { auth, db } from "./login.js";
 
 
 // homepage products details fetching from API
@@ -344,7 +345,6 @@ if (document.getElementById("product")) {
                 </div>
             `;
 
-            // FIX 2: Removed backticks around addToCart call
             const cartBtn = document.getElementById("cart_button");
             cartBtn.addEventListener("click", () => {
                 addToCart(product);
@@ -356,26 +356,43 @@ if (document.getElementById("product")) {
         });
 }
 
-// FIX 3: Define function before export (or remove export if not needed)
 async function addToCart(product) {
-    console.log("ADD TO CART CLICKED:", product);
+  const user = auth.currentUser;
 
-    // TODO: Add Firebase code here to save to cart
-    // Example structure:
-    // const user = firebase.auth().currentUser;
-    // if (user) {
-    //     await firebase.firestore()
-    //         .collection('carts')
-    //         .doc(user.uid)
-    //         .collection('items')
-    //         .add({
-    //             productId: product.id,
-    //             title: product.title,
-    //             price: product.price,
-    //             quantity: 1,
-    //             timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    //         });
-    // }
+  // 🚨 User not logged in
+  if (!user) {
+    alert("Please login first to add items to cart.");
+    return;
+  }
+
+  const uid = user.uid;
+  const cartItemRef = doc(db, "users", uid, "cart", product.id.toString());
+
+  // ✅ Check if item already exists
+  const existingDoc = await getDoc(cartItemRef);
+
+  if (existingDoc.exists()) {
+    // If already in cart → increase quantity
+    const oldQty = existingDoc.data().quantity;
+
+    await setDoc(cartItemRef, {
+      title: product.title,
+      price: product.price,
+      image: product.thumbnail,
+      quantity: oldQty + 1
+    });
+
+  } else {
+    // If new item → add with quantity 1
+    await setDoc(cartItemRef, {
+      title: product.title,
+      price: product.price,
+      image: product.thumbnail,
+      quantity: 1
+    });
+  }
+
+  alert("✅ Item added to cart!");
 }
 
 // Make available globally if needed
