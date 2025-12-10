@@ -284,6 +284,6 @@ body {
 
 }
 
-#fav_button:hover {
-    background-color:
+#fav_button button:hover {
+    background-color: #2a2929;
 }
