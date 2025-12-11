@@ -1,4 +1,4 @@
-import {getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+import {getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc, serverTimestamp} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 import { auth, db } from "./login.js";
 
@@ -367,7 +367,6 @@ async function addToCart(product) {
 
   const uid = user.uid;
   const cartItemRef = doc(db, "users", uid, "cart", product.id.toString());
-
   // ✅ Check if item already exists
   const existingDoc = await getDoc(cartItemRef);
 
@@ -376,23 +375,26 @@ async function addToCart(product) {
     const oldQty = existingDoc.data().quantity;
 
     await setDoc(cartItemRef, {
+      id: product.id,
       title: product.title,
       price: product.price,
       image: product.thumbnail,
       quantity: oldQty + 1
     });
+    alert("✅ One more added to cart!");
 
   } else {
     // If new item → add with quantity 1
     await setDoc(cartItemRef, {
+      id: product.id,
       title: product.title,
       price: product.price,
       image: product.thumbnail,
       quantity: 1
     });
+    alert("✅ Item added to cart!");
   }
 
-  alert("✅ Item added to cart!");
 }
 
 // Make available globally if needed

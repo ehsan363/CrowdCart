@@ -287,3 +287,7 @@ body {
 #fav_button button:hover {
     background-color: #2a2929;
 }
+
+#cartItemDetails {
+    display: flex;
+}
