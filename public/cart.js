@@ -41,7 +41,6 @@ window.addEventListener("DOMContentLoaded", () => {
             <div class="product">
                 <img src="${item.image}" width="150" loading = 'lazy'>
                 <h3>${item.title}</h3>
-                <p id = "product_rating">Rating: ${item.rating}&#127775;</p>
                 <p id = "product_price">AED ${item.price}</p>
                 <p id = 'product_quantity'>Qty: ${item.quantity}</p>
             </div>
