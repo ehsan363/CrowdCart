@@ -291,3 +291,33 @@ body {
 #cartItemDetails {
     display: flex;
 }
+
+.product-link {
+    color: white;
+    text-align: center;
+}
+
+#votingCat {
+    font-size: 35px;
+}
+
+.vote-card {
+    display: flex;
+    text-align: center;
+    items-align: center;
+}
+
+.priceAndRating{
+    font-size: 22px;
+}
+
+#voteButton {
+    border: 3px solid #5AC6CA;
+    background: none;
+    color: #5AC6CA;
+    border-radius: 8px;
+    padding: 10px 15px 10px 15px;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}

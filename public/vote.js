@@ -29,23 +29,27 @@ async function loadWeeklyVote() {
     return;
   }
 
-  let html = "";
+  let html = "<div id = 'votingCandidates'>";
 
   products.forEach(p => {
     html += `
-      <div class="vote-card">
-        <h2>${p.category}</h2>
-        <img src="${p.thumbnail}" width="200">
-        <h3>${p.title}</h3>
-        <p>Rating: ${p.rating}</p>
-        <p>Price: AED ${p.price}</p>
-        <p>Trending Score: ${p.trendingScore}</p>
-        <button data-id="${p.id}">Vote</button>
-      </div>
+    <a href = 'product.html?id=${p.id}' class = 'product-link'>
+        <p id = 'votingCat'>${p.category}</p>
+        <div class="vote-card">
+            <img src="${p.thumbnail}" width="300">
+            <div id= 'votingDetails'>
+                <h2>${p.title}</h2>
+                <p class = 'priceAndRating'>Rating: ${p.rating}</p>
+                <p class = 'priceAndRating'>Price: AED ${p.price}</p>
+                <button id = 'voteButton' data-id="${p.id}">VOTE</button>
+            </div>
+        </div>
+        <hr>
+    </a>
     `;
   });
 
-  voteContainer.innerHTML = html;
+  voteContainer.innerHTML = html+='</div>';
 }
 
 window.addEventListener("DOMContentLoaded", loadWeeklyVote);
