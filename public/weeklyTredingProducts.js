@@ -3,7 +3,7 @@ import { doc, getDoc, setDoc } from
   "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
 /* ---------- CONFIG ---------- */
-const WEEK_MS = 10 * 1000;
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
 /* ---------- TRENDING SCORE ---------- */
 function calculateTrendingScore(product) {
