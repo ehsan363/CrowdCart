@@ -13,23 +13,31 @@ window.addEventListener("DOMContentLoaded", () => {
     const cartDiv = document.getElementById("cart");
 
     if (!user) {
-      cartDiv.innerHTML = `
-        <p style="font-size: 32px; color: #5AC6CA; text-align: center;">
-          Please login to see your cart.
-        </p>`;
+        window.addEventListener("DOMContentLoaded", () => {
+            cartDiv.innerHTML = `
+            <p style="font-size: 32px; color: #5AC6CA; text-align: center;">
+                Please login to see your cart.
+            </p>`;
+        });
       return;
     }
 
     // User logged in → load cart
-    const uid = user.uid;
+    onAuthStateChanged(auth, user => {
+        if (!user) return;
+        const uid = user.uid;
+        });
+
     const cartRef = collection(db, "users", uid, "cart");
     const snap = await getDocs(cartRef);
 
     if (snap.empty) {
-      cartDiv.innerHTML = `
-        <p style="font-size: 32px; color: #5AC6CA; text-align: center;">
-          No items added to cart.
-        </p>`;
+        window.addEventListener("DOMContentLoaded", () => {
+            cartDiv.innerHTML = `
+                <p style="font-size: 32px; color: #5AC6CA; text-align: center;">
+                    No items added to cart.
+                </p>`;
+        });
       return;
     }
 
@@ -50,7 +58,9 @@ window.addEventListener("DOMContentLoaded", () => {
       `;
     });
 
-    cartDiv.innerHTML = html;
+    window.addEventListener("DOMContentLoaded", () => {
+        cartDiv.innerHTML = html;
+    });
   });
 });
 
@@ -60,6 +70,10 @@ export async function removeFromCart(productId) {
   const user = auth.currentUser;
   if (!user) return;
 
+  onAuthStateChanged(auth, user => {
+  if (!user) return;
   const uid = user.uid;
+  });
+
   await deleteDoc(doc(db, "users", uid, "cart", productId.toString()));
 }

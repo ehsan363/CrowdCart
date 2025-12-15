@@ -27,7 +27,9 @@ async function loadWeeklyVote() {
   const snap = await getDoc(ref);
 
   if (!snap.exists()) {
-    voteContainer.innerHTML = "<p style = 'color: white;'>No weekly products available.</p>";
+    window.addEventListener("DOMContentLoaded", () => {
+        voteContainer.innerHTML = "<p style = 'color: white;'>No weekly products available.</p>";
+    });
     return;}
 
   const {products} = snap.data();
@@ -49,8 +51,9 @@ async function loadWeeklyVote() {
       </div>
     `;
   }
-
-  voteContainer.innerHTML = html;
+  window.addEventListener("DOMContentLoaded", () => {
+      voteContainer.innerHTML = html;
+  });
 }
 
 window.addEventListener("DOMContentLoaded", loadWeeklyVote);

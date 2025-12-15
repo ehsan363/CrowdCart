@@ -17,8 +17,10 @@ async function loadWeeklyVote() {
   const snap = await getDoc(ref);
 
   if (!snap.exists()) {
-    voteContainer.innerHTML =
-      "<p style='color:white;'>No weekly products available.</p>";
+    window.addEventListener("DOMContentLoaded", () => {
+        voteContainer.innerHTML =
+        "<p style='color:white;'>No weekly products available.</p>";
+    });
     return;
   }
 
@@ -29,8 +31,10 @@ async function loadWeeklyVote() {
 
   if (!currentWeekId) {
     console.error("❌ weekId missing in weeklySelection/currentWeek");
-    voteContainer.innerHTML =
-      "<p style='color:white;'>Voting not ready.</p>";
+    window.addEventListener("DOMContentLoaded", () => {
+        voteContainer.innerHTML =
+          "<p style='color:white;'>Voting not ready.</p>";
+    });
     return;
   }
 
@@ -39,8 +43,10 @@ async function loadWeeklyVote() {
     : Object.values(data.products || {});
 
   if (products.length === 0) {
-    voteContainer.innerHTML =
-      "<p style='color:white;'>No weekly products available.</p>";
+    window.addEventListener("DOMContentLoaded", () => {
+        voteContainer.innerHTML =
+          "<p style='color:white;'>No weekly products available.</p>";
+    });
     return;
   }
 
@@ -70,8 +76,9 @@ async function loadWeeklyVote() {
       </div>
     `;
   });
-
-  voteContainer.innerHTML = html + "</div>";
+  window.addEventListener("DOMContentLoaded", () => {
+      voteContainer.innerHTML = html + "</div>";
+  });
 }
 
 window.addEventListener("DOMContentLoaded", loadWeeklyVote);
@@ -101,7 +108,11 @@ async function voteProduct(productId) {
     return;
   }
 
-  const uid = user.uid;
+    onAuthStateChanged(auth, user => {
+        if (!user) return;
+        const uid = user.uid;
+    });
+
 
   const voteRef = doc(
     db,
