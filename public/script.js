@@ -21,29 +21,23 @@ if (document.getElementById("product-list")) {
 
     // Re-render products into the page
     function displayProducts(list) {
-        window.addEventListener("DOMContentLoaded", () => {
-            productList.innerHTML = "";
-        });
+        productList.innerHTML = "";
 
       list.forEach(product => {
-        window.addEventListener("DOMContentLoaded", () => {
-            productList.innerHTML += `
-                <a href="product.html?id=${product.id}" class = 'product-link'>
-                    <div class="product">
-                        <img src="${product.thumbnail}" width="150" loading = 'lazy'>
-                        <h3>${product.title}</h3>
-                        <p id = "product_rating">Rating: ${product.rating}&#127775;</p>
-                        <p id = "product_price">AED ${product.price}</p>
-                    </div>
-                </a>
-            `;
-        });
+        productList.innerHTML += `
+            <a href="product.html?id=${product.id}" class = 'product-link'>
+                <div class="product">
+                    <img src="${product.thumbnail}" width="150" loading = 'lazy'>
+                    <h3>${product.title}</h3>
+                    <p id = "product_rating">Rating: ${product.rating}&#127775;</p>
+                    <p id = "product_price">AED ${product.price}</p>
+                </div>
+            </a>
+        `;
 
         // Results number display
         const productCount = document.querySelectorAll('.product').length;
-        window.addEventListener("DOMContentLoaded", () => {
-            document.getElementById('results').innerHTML = productCount+" Results";
-        });
+        document.getElementById('results').innerHTML = productCount+" Results";
       });
     }
 
@@ -92,29 +86,23 @@ if (document.getElementById("phone-list")) {
 
     // Re-render products into the page
     function displayProducts(list) {
-        window.addEventListener("DOMContentLoaded", () => {
-            productList.innerHTML = "";
-        });
+        productList.innerHTML = "";
 
       list.forEach(product => {
-        window.addEventListener("DOMContentLoaded", () => {
-            productList.innerHTML += `
-                <a href="product.html?id=${product.id}" class = 'product-link'>
-                    <div class="product">
-                        <img src="${product.thumbnail}" width="150" loading = 'lazy'>
-                        <h3>${product.title}</h3>
-                        <p id = "product_rating">Rating: ${product.rating}&#127775;</p>
-                        <p id = "product_price">AED ${product.price}</p>
-                    </div>
-                </a>
-            `;
-        });
+        productList.innerHTML += `
+            <a href="product.html?id=${product.id}" class = 'product-link'>
+                <div class="product">
+                    <img src="${product.thumbnail}" width="150" loading = 'lazy'>
+                    <h3>${product.title}</h3>
+                    <p id = "product_rating">Rating: ${product.rating}&#127775;</p>
+                    <p id = "product_price">AED ${product.price}</p>
+                </div>
+            </a>
+        `;
 
         // Results number display
         const productCount = document.querySelectorAll('.product').length;
-        window.addEventListener("DOMContentLoaded", () => {
-            document.getElementById('results').innerHTML = productCount+" Results";
-        });
+        document.getElementById('results').innerHTML = productCount+" Results";
       });
     }
 
@@ -162,30 +150,23 @@ if (document.getElementById("shirt-list")) {
 
     // Re-render products into the page
     function displayProducts(list) {
-        window.addEventListener("DOMContentLoaded", () => {
-            productList.innerHTML = "";
-        });
+      productList.innerHTML = "";
 
       list.forEach(product => {
-        window.addEventListener("DOMContentLoaded", () => {
-            productList.innerHTML += `
-                <a href="product.html?id=${product.id}" class = 'product-link'>
-                    <div class="product">
-                        <img src="${product.thumbnail}" width="150" loading = 'lazy'>
-                        <h3>${product.title}</h3>
-                        <p id = "product_rating">Rating: ${product.rating}&#127775;</p>
-                        <p id = "product_price">AED ${product.price}</p>
-                    </div>
-                </a>
-            `;
-        });
+        productList.innerHTML += `
+            <a href="product.html?id=${product.id}" class = 'product-link'>
+                <div class="product">
+                    <img src="${product.thumbnail}" width="150" loading = 'lazy'>
+                    <h3>${product.title}</h3>
+                    <p id = "product_rating">Rating: ${product.rating}&#127775;</p>
+                    <p id = "product_price">AED ${product.price}</p>
+                </div>
+            </a>
+        `;
 
         // Results number display
         const productCount = document.querySelectorAll('.product').length;
-        window.addEventListener("DOMContentLoaded", () => {
-            document.getElementById('results').innerHTML = productCount+" Results";
-        });
-      });
+        document.getElementById('results').innerHTML = productCount+" Results";
     }
 
     // Handle sorting
@@ -232,15 +213,10 @@ if (document.getElementById("laptop-list")) {
 
     // Re-render products into the page
     function displayProducts(list) {
-        window.addEventListener("DOMContentLoaded", () => {
-            productList.innerHTML = "";
-        });
+      productList.innerHTML = "";
 
       list.forEach(product => {
-        window.addEventListener("DOMContentLoaded", () => {
-            productList.innerHTML += `
-        });
-
+        productList.innerHTML += `
             <a href="product.html?id=${product.id}" class = 'product-link'>
                 <div class="product">
                     <img src="${product.thumbnail}" width="150" loading = 'lazy'>
@@ -253,9 +229,7 @@ if (document.getElementById("laptop-list")) {
 
         // Results number display
         const productCount = document.querySelectorAll('.product').length;
-        window.addEventListener("DOMContentLoaded", () => {
-            document.getElementById('results').innerHTML = productCount+" Results";
-        });
+        document.getElementById('results').innerHTML = productCount+" Results";
       });
     }
 
@@ -329,10 +303,7 @@ if (document.getElementById("product")) {
     fetch(`https://dummyjson.com/products/${id}`)
         .then(res => res.json())
         .then(product => {
-            window.addEventListener("DOMContentLoaded", () => {
-                document.getElementById("product").innerHTML = `
-            });
-
+            document.getElementById("product").innerHTML = `
                 <div id = 'product_details_display'>
                     <h1 id='product-title_detail'>${product.title}</h1>
                     <div id = "detail_row">
@@ -379,10 +350,7 @@ if (document.getElementById("product")) {
             });
         })
         .catch(err => {
-            window.addEventListener("DOMContentLoaded", () => {
             document.getElementById("product").innerHTML = "<p>Error loading product.</p>";
-            });
-
             console.error(err);
         });
 }
