@@ -13,7 +13,7 @@ function calculateTrendingScore(product) {
 }
 
 exports.weeklyFeaturedProducts = functions.pubsub
-  .schedule("every 1 minute") //monday 00:00
+  .schedule("monday 00:00") //monday 00:00
   .timeZone("Asia/Kolkata")
   .onRun(async () => {
 import { db } from "./login.js";

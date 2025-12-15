@@ -304,14 +304,13 @@ body {
 .vote-card {
     display: flex;
     text-align: center;
-    items-align: center;
 }
 
 .priceAndRating{
     font-size: 22px;
 }
 
-#voteButton {
+.voteButton {
     border: 3px solid #5AC6CA;
     background: none;
     color: #5AC6CA;
