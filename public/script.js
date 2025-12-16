@@ -7,7 +7,6 @@ import { auth, db } from "./login.js";
 // Check if we are on home.html (product list page)
 if (document.getElementById("product-list")) {
 
-    const sortSelect = document.getElementById("sort-feature");
     const productList = document.getElementById("product-list");
     let products = [];     // This will store the fetched products
 
@@ -34,13 +33,15 @@ if (document.getElementById("product-list")) {
                 </div>
             </a>
         `;
+      });
 
         // Results number display
         const productCount = document.querySelectorAll('.product').length;
         document.getElementById('results').innerHTML = productCount+" Results";
-      });
+      };
     }
 
+    const sortSelect = document.getElementById("sort-feature");
     // Handle sorting
     sortSelect.addEventListener("change", () => {
       const value = sortSelect.value;
@@ -67,7 +68,7 @@ if (document.getElementById("product-list")) {
       displayProducts(products); // Redisplay
 
     });
-}
+
 
 // Smartphones categories details fetching from API
 if (document.getElementById("phone-list")) {
@@ -86,7 +87,7 @@ if (document.getElementById("phone-list")) {
 
     // Re-render products into the page
     function displayProducts(list) {
-        productList.innerHTML = "";
+      productList.innerHTML = "";
 
       list.forEach(product => {
         productList.innerHTML += `
@@ -99,11 +100,12 @@ if (document.getElementById("phone-list")) {
                 </div>
             </a>
         `;
+      });
 
         // Results number display
         const productCount = document.querySelectorAll('.product').length;
         document.getElementById('results').innerHTML = productCount+" Results";
-      });
+      };
     }
 
     // Handle sorting
@@ -132,7 +134,7 @@ if (document.getElementById("phone-list")) {
       displayProducts(products); // Redisplay
 
     });
-}
+
 
 if (document.getElementById("shirt-list")) {
 
@@ -163,11 +165,12 @@ if (document.getElementById("shirt-list")) {
                 </div>
             </a>
         `;
+      });
 
         // Results number display
         const productCount = document.querySelectorAll('.product').length;
         document.getElementById('results').innerHTML = productCount+" Results";
-    }
+      }
 
     // Handle sorting
     sortSelect.addEventListener("change", () => {
@@ -226,11 +229,12 @@ if (document.getElementById("laptop-list")) {
                 </div>
             </a>
         `;
+      });
 
         // Results number display
         const productCount = document.querySelectorAll('.product').length;
         document.getElementById('results').innerHTML = productCount+" Results";
-      });
+      };
     }
 
     // Handle sorting
@@ -259,7 +263,7 @@ if (document.getElementById("laptop-list")) {
       displayProducts(products); // Redisplay
 
     });
-}
+
 
 if (document.getElementById("fav-list")) {
 
