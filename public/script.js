@@ -39,7 +39,6 @@ if (document.getElementById("product-list")) {
         const productCount = document.querySelectorAll('.product').length;
         document.getElementById('results').innerHTML = productCount+" Results";
       };
-    }
 
     const sortSelect = document.getElementById("sort-feature");
     // Handle sorting
@@ -68,6 +67,7 @@ if (document.getElementById("product-list")) {
       displayProducts(products); // Redisplay
 
     });
+}
 
 
 // Smartphones categories details fetching from API
@@ -106,7 +106,6 @@ if (document.getElementById("phone-list")) {
         const productCount = document.querySelectorAll('.product').length;
         document.getElementById('results').innerHTML = productCount+" Results";
       };
-    }
 
     // Handle sorting
     sortSelect.addEventListener("change", () => {
@@ -134,6 +133,7 @@ if (document.getElementById("phone-list")) {
       displayProducts(products); // Redisplay
 
     });
+}
 
 
 if (document.getElementById("shirt-list")) {
@@ -235,7 +235,6 @@ if (document.getElementById("laptop-list")) {
         const productCount = document.querySelectorAll('.product').length;
         document.getElementById('results').innerHTML = productCount+" Results";
       };
-    }
 
     // Handle sorting
     sortSelect.addEventListener("change", () => {
@@ -263,6 +262,7 @@ if (document.getElementById("laptop-list")) {
       displayProducts(products); // Redisplay
 
     });
+}
 
 
 if (document.getElementById("fav-list")) {
@@ -296,7 +296,7 @@ if (document.getElementById("fav-list")) {
 
       displayProducts(products); // Redisplay
 
-    });script
+    });
 }
 
 // Check if we are on product.html, product detail page
