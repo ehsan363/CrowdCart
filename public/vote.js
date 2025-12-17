@@ -1,16 +1,13 @@
 import { db, auth } from "./login.js";
-import {
-  doc,
-  getDoc,
-  setDoc,
-  increment
-} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+import { doc, getDoc, setDoc, increment } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
 let currentWeekId = null;
 
 /* ---------------- LOAD WEEKLY PRODUCTS ---------------- */
 
 async function loadWeeklyVote() {
+  console.log('Entered loadWeeklyVote() ✅')
   const voteContainer = document.getElementById("voteContainer");
 
   const ref = doc(db, "weeklySelection", "currentWeek");
@@ -76,9 +73,7 @@ async function loadWeeklyVote() {
       </div>
     `;
   });
-  window.addEventListener("DOMContentLoaded", () => {
       voteContainer.innerHTML = html + "</div>";
-  });
 }
 
 window.addEventListener("DOMContentLoaded", loadWeeklyVote);
@@ -108,10 +103,7 @@ async function voteProduct(productId) {
     return;
   }
 
-    onAuthStateChanged(auth, user => {
-        if (!user) return;
-        const uid = user.uid;
-    });
+  const uid = user.uid;
 
 
   const voteRef = doc(
@@ -122,13 +114,7 @@ async function voteProduct(productId) {
     productId.toString()
   );
 
-  const userVoteRef = doc(
-    db,
-    "userVotes",
-    uid,
-    "weeks",
-    currentWeekId
-  );
+  const userVoteRef = doc(db, "userVotes", uid, "weeks", currentWeekId);
 
   // 🔒 Prevent double voting THIS WEEK
   const userVoteSnap = await getDoc(userVoteRef);
@@ -161,3 +147,7 @@ function toTitleCase(str) {
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 }
+
+setTimeout(() => {
+  console.log("🕵️ voteContainer after render:", voteContainer.innerHTML);
+}, 500);

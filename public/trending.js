@@ -1,13 +1,29 @@
 import { db } from "./login.js";
-import { doc, setDoc } from
-  "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+import { doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
 async function seedWeeklyProducts() {
+  const weekRef = doc(db, "weeklySelection", "currentWeek");
+
+  // 🔒 Prevent overwriting an active week
+  const existingSnap = await getDoc(weekRef);
+  if (existingSnap.exists() && !existingSnap.data().processed) {
+    console.log("⏳ Current week still active. No reseed.");
+    return;
+  }
+
+  // 🗓️ Week timing
+  const startDate = new Date();
+  const endDate = new Date();
+  endDate.setDate(startDate.getDate() + 7);
+
+  const weekId = startDate.toISOString().slice(0, 10);
+
+  // 📦 Fetch products
   const res = await fetch("https://dummyjson.com/products?limit=194");
   const data = await res.json();
   const products = data.products;
 
-  // 🔢 trending score
+  // 🔢 Trending score
   products.forEach(p => {
     p.trendingScore =
       p.rating * 10 +
@@ -15,14 +31,14 @@ async function seedWeeklyProducts() {
       (100 - p.stock);
   });
 
-  // 📂 group by category
+  // 📂 Group by category
   const categories = {};
   products.forEach(p => {
     if (!categories[p.category]) categories[p.category] = [];
     categories[p.category].push(p);
   });
 
-  // 🎯 pick 4 random categories
+  // 🎯 Pick 4 random categories
   const pickedCategories = Object.keys(categories)
     .sort(() => 0.5 - Math.random())
     .slice(0, 4);
@@ -47,15 +63,17 @@ async function seedWeeklyProducts() {
     });
   });
 
-  const weekId = new Date().toISOString().slice(0, 10);
-
-  await setDoc(doc(db, "weeklySelection", "currentWeek"), {
+  // 🧾 Save week
+  await setDoc(weekRef, {
     weekId,
-    date: new Date().toISOString(),
-    products: weeklyProducts
+    startDate: startDate.toISOString(),
+    endDate: endDate.toISOString(),
+    processed: false,
+    products: weeklyProducts,
+    createdAt: serverTimestamp()
   });
 
-  console.log("✅ Weekly products seeded:", weeklyProducts);
+  console.log("✅ New weekly products seeded:", weeklyProducts);
 }
 
 seedWeeklyProducts();

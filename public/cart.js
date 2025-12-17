@@ -9,8 +9,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // 🚨 Not logged in
     if (!user) {
-      console.log("am here ✅");
-
       cartDiv.innerHTML = `
         <p style="font-size: 32px; color: #5AC6CA; text-align: center;">
           Please login to see your cart.

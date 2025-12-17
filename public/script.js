@@ -316,7 +316,6 @@ if (document.getElementById("product")) {
                             <p><strong>Rating:</strong> ${product.rating} 🌟</p>
                             <p id='discount_percentage'></p>
                             <p><strong>Price:</strong> AED ${product.price}</p>
-                            <button id = "fav_button" type = "button"><img src="icons/heart_off.png" height = '40px'></button><br>
                             <button id="cart_button"><img src= 'icons/cart.png' height = '40px'>></button>
                         </div>
                     </div>
@@ -352,6 +351,30 @@ if (document.getElementById("product")) {
             cartBtn.addEventListener("click", () => {
                 addToCart(product);
             });
+            const discountEl = document.getElementById("discount_percentage");
+
+            async function applyWeeklyDiscount(productId) {
+              const weekRef = doc(db, "weeklySelection", "currentWeek");
+              const weekSnap = await getDoc(weekRef);
+
+              if (!weekSnap.exists()) return;
+
+              const { processed, winner } = weekSnap.data();
+              if (!processed || !winner) return;
+
+              // 🎯 Check if THIS product won
+              if (winner.productId !== productId) return;
+
+              discountEl.innerHTML = `
+                <strong style="color: green;">
+                  🎉 Weekly Deal: ${winner.discountPercentage}% OFF
+                </strong>
+              `;
+            }
+
+            // Call it
+            applyWeeklyDiscount(product.id);
+
         })
         .catch(err => {
             document.getElementById("product").innerHTML = "<p>Error loading product.</p>";

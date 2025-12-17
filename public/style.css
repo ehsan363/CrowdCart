@@ -40,14 +40,6 @@ body {
     margin-top: 10px;
 }
 
-/*  nav bar link row */
-.nav_links {
-    padding-left: 160px;
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
 /* Nav abr links <a> */
 .nav_links a {
     text-decoration: none;
@@ -69,6 +61,7 @@ body {
     display: flex;
     align-items: center;
     padding-left: 160px;
+    gap: 20px;
 }
 
 #sp_navLink1, #sp_navLink2 , #sp_navLink3, #sp_navLink4{
@@ -108,7 +101,7 @@ body {
 
 /* Navbar length for homepage and category1 */
 .nav_right {
-    margin-left: 660px;
+    margin-left: 730px;
 }
 
 /* Bar with number of results and sort button */
