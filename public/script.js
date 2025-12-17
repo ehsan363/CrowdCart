@@ -1,5 +1,5 @@
-import {getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc, serverTimestamp} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+import {getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 import { auth, db } from "./login.js";
 
 
@@ -368,12 +368,9 @@ async function addToCart(product) {
     return;
   }
 
-  onAuthStateChanged(auth, user => {
-    if (!user) return;
-    const uid = user.uid;
-  });
-
+  const uid = user.uid;
   const cartItemRef = doc(db, "users", uid, "cart", product.id.toString());
+
   // ✅ Check if item already exists
   const existingDoc = await getDoc(cartItemRef);
 
@@ -401,8 +398,8 @@ async function addToCart(product) {
     });
     alert("✅ Item added to cart!");
   }
+};
 
-}
 
 // Make available globally if needed
 window.addToCart = addToCart;
