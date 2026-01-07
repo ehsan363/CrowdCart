@@ -10,14 +10,14 @@ async function loadWeeklyVote() {
   console.log('Entered loadWeeklyVote() ✅')
   const voteContainer = document.getElementById("voteContainer");
 
+  // Remove all the window.addEventListener wrappers
+  // Just set innerHTML directly since we're already waiting for DOMContentLoaded
+
   const ref = doc(db, "weeklySelection", "currentWeek");
   const snap = await getDoc(ref);
 
   if (!snap.exists()) {
-    window.addEventListener("DOMContentLoaded", () => {
-        voteContainer.innerHTML =
-        "<p style='color:white;'>No weekly products available.</p>";
-    });
+    voteContainer.innerHTML = "<p style='color:white;'>No weekly products available.</p>";
     return;
   }
 
