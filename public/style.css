@@ -64,8 +64,8 @@ body {
     gap: 20px;
 }
 
-#sp_navLink1, #sp_navLink2 , #sp_navLink3, #sp_navLink4{
-    padding-left: 10px;
+#sp_navLink1, #sp_navLink2, #sp_navLink3 , #sp_navLink4, #sp_navLink5{
+    padding-left: 15px;
 }
 
 /* Last 3 icons in the navbar */
@@ -101,7 +101,7 @@ body {
 
 /* Navbar length for homepage and category1 */
 .nav_right {
-    margin-left: 730px;
+    margin-left:610px;
 }
 
 /* Bar with number of results and sort button */
@@ -312,4 +312,12 @@ body {
     margin-top: 15px;
     font-size: 18px;
     font-weight: bold;
+}
+
+#aboutUsText {
+    font-family: LucidaBright;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    padding-top: 100px;
 }
