@@ -279,7 +279,7 @@ if (document.getElementById("product")) {
                         <img id='product-image_detail' src="${product.thumbnail}" width="300">
                         <div id = 'rating_price_buttons_detail'>
                             <p><strong>Rating:</strong> ${product.rating} 🌟</p>
-                            <p id='discount_percentage'>-15%< style='color: red; font-size: 18px; font-weight: bold;'/p>
+                            <p id='discount_percentage'></p>
                             <p><strong>Price:</strong> AED ${product.price}</p>
                             <button id="cart_button"><img src= 'icons/cart.png' height = '40px'>></button>
                         </div>
