@@ -11,7 +11,7 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/9.23.0/firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBAUkCJYab8t9yKDlN2i5BDFJ_kvph4BX4",
   authDomain: "crowdcart-y2025.firebaseapp.com",
-  projectId: "CrowdCart",
+  projectId: "crowdcart-y2025",
   storageBucket: "crowdcart-y2025.firebasestorage.app",
   messagingSenderId: "887027389752",
   appId: "1:887027389752:web:bb6ec9f72e8fdbd9125dcd",
