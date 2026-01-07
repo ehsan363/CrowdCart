@@ -264,41 +264,6 @@ if (document.getElementById("laptop-list")) {
     });
 }
 
-
-if (document.getElementById("fav-list")) {
-
-    const sortSelect = document.getElementById("sort-feature");
-    const productList = document.getElementById("fav-list");
-    let products = [];     // This will store the fetched products
-
-    // Handle sorting
-    sortSelect.addEventListener("change", () => {
-      const value = sortSelect.value;
-
-      if (value === "AZ") {
-        products.sort((a, b) => a.title.localeCompare(b.title)); // Asc Order
-      }
-      else if (value === "ZA") {
-        products.sort((a, b) => b.title.localeCompare(a.title)); // Desc order
-      }
-      else if (value === "L-H") {
-        products.sort((a, b) => a.price - b.price); // Price low to high
-      }
-      else if (value === "H-L") {
-        products.sort((a, b) => b.price - a.price); // Price high to low
-      }
-      else if (value === "Rating") {
-        products.sort((a, b) => b.rating - a.rating); // Customer rating order
-      }
-      else {
-        products.sort((a, b) => a.id - b.id);   // Default order
-      }
-
-      displayProducts(products); // Redisplay
-
-    });
-}
-
 // Check if we are on product.html, product detail page
 if (document.getElementById("product")) {
     const params = new URLSearchParams(window.location.search);
@@ -314,7 +279,7 @@ if (document.getElementById("product")) {
                         <img id='product-image_detail' src="${product.thumbnail}" width="300">
                         <div id = 'rating_price_buttons_detail'>
                             <p><strong>Rating:</strong> ${product.rating} 🌟</p>
-                            <p id='discount_percentage'></p>
+                            <p id='discount_percentage'>-15%< style='color: red; font-size: 18px; font-weight: bold;'/p>
                             <p><strong>Price:</strong> AED ${product.price}</p>
                             <button id="cart_button"><img src= 'icons/cart.png' height = '40px'>></button>
                         </div>
