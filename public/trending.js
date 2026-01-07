@@ -19,7 +19,7 @@ async function seedWeeklyProducts() {
   const weekId = startDate.toISOString().slice(0, 10);
 
   // 📦 Fetch products
-  const res = await fetch("https://dummyjson.com/products?limit=194");
+  const res = await fetch("https://dummyjson.com/products?limit=150");
   const data = await res.json();
   const products = data.products;
 

@@ -11,7 +11,7 @@ if (document.getElementById("product-list")) {
     let products = [];     // This will store the fetched products
 
     // Fetch products
-    fetch("https://dummyjson.com/products?limit=100")
+    fetch("https://dummyjson.com/products?limit=150")
       .then(res => res.json())
       .then(data => {
         products = data.products;
