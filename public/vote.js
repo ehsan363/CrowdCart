@@ -4,8 +4,6 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/fi
 
 let currentWeekId = null;
 
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-
 window.addEventListener("DOMContentLoaded", () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
