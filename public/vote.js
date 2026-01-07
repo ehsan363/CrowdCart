@@ -4,6 +4,18 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/fi
 
 let currentWeekId = null;
 
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+window.addEventListener("DOMContentLoaded", () => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      loadWeeklyVote();
+    } else {
+      document.getElementById("voteContainer").innerHTML =
+        "<p style='color:white;'>Please login to vote.</p>";
+    }
+  });
+});
 /* ---------------- LOAD WEEKLY PRODUCTS ---------------- */
 
 async function loadWeeklyVote() {
