@@ -17,13 +17,13 @@ async function loadWeeklyVote() {
   const snap = await getDoc(ref);
 
   if (!snap.exists()) {
-    voteContainer.innerHTML = "<p style='color:white;'>No weekly products available.</p>";
+    voteContainer.innerHTML = "<p style='color:white; text-align: center; font-size:26px;'>No weekly products available.</p>";
     return;
   }
 
   const data = snap.data();
 
-  // ✅ REQUIRED FIELD
+
   currentWeekId = data.weekId;
 
   if (!currentWeekId) {
@@ -116,7 +116,7 @@ async function voteProduct(productId) {
 
   const userVoteRef = doc(db, "userVotes", uid, "weeks", currentWeekId);
 
-  // 🔒 Prevent double voting THIS WEEK
+  //  Prevent double voting THIS WEEK
   const userVoteSnap = await getDoc(userVoteRef);
 
   if (userVoteSnap.exists()) {
@@ -124,14 +124,14 @@ async function voteProduct(productId) {
     return;
   }
 
-  // 🔼 Increment vote count
+  //  Increment vote count
   await setDoc(
     voteRef,
     { productId, votes: increment(1) },
     { merge: true }
   );
 
-  // 🧾 Record user's vote for THIS week
+  // Record user's vote for THIS week
   await setDoc(userVoteRef, {
     productId,
     votedAt: new Date().toISOString()
@@ -149,5 +149,5 @@ function toTitleCase(str) {
 }
 
 setTimeout(() => {
-  console.log("🕵️ voteContainer after render:", voteContainer.innerHTML);
+  console.log("voteContainer after render:", voteContainer.innerHTML);
 }, 500);
